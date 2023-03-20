@@ -14,9 +14,13 @@ VALUES (#{userId}, NOW(), #{postAddress}, #{detailAddress}, #{detailAddress2}, #
 <insert id="orderDetailWrite" parameterType="com.project.order.domain.OrderDetailDTO">
 	
 	INSERT INTO orderdetaildto (orderNum, pno, productPrice, productCnt, userId)
-	SELECT max(orderNum), #{pno}, #{productPrice}, #{productCnt}, #{userId}
-	FROM orderdto
-	WHERE userId = #{userId}
+	VALUES((SELECT max(orderNum) FROM orderdto), #{pno}, #{productPrice}, #{productCnt}, #{userId})
+	
+
+	<!-- SELECT max(orderNum), #{pno}, #{productPrice}, #{productCnt}, #{userId}
+		FROM orderdto
+		WHERE userId = #{userId}
+			 -->
 	
 </insert>
 

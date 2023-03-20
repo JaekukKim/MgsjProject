@@ -45,7 +45,7 @@ request.setCharacterEncoding("UTF-8");
 
 					<td>
 						<div class="cart-info">
-							<img src="">
+							<img id="resultimg" src="${cartList.storedFileName}" alt="상품 이미지 로딩 실패">
 							<div>
 								<p>
 									<a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a>

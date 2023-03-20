@@ -26,7 +26,21 @@
 
 	</delete>
 
-	<!-- 상품 게시글 수정하기 -->
+	<!-- 상품 수정하기 -->
+	<update id = "productUpdate" parameterType = "HashMap">
+		
+		UPDATE productdto
+		SET
+			#{productName}, 
+			#{productPrice},
+			#{productStock},
+			#{productDescription},
+			#{originalFileName},
+			#{storedFileName},
+			#{storedThumbNail}
+		WEHRE pno = #{pno}
+			
+	</update>
 
 
 	<!-- 상품 게시글 상세 조회 -->

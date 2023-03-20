@@ -23,6 +23,10 @@ public class OrderDTO {
 	private String paymentCard;
 	private String paymentKind;
 	private Date paymentRegDate;
+	
+	public OrderDTO() {
+		
+	}
 
 	public int getOrderNum() {
 		return orderNum;

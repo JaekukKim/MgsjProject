@@ -28,7 +28,7 @@
 	<!-- 장바구니 목록 -->
 	<select id="cartList" parameterType="com.project.product.domain.CartDTO" resultType="com.project.product.domain.CartDTO">
 
-		SELECT c.pno, p.productName, p.productPrice, SUM(c.productCnt) as totalCnt, member.userId
+		SELECT c.pno, p.productName, p.productPrice, SUM(c.productCnt) as totalCnt, member.userId, p.storedFileName
 			FROM cartdto as c
       
 				INNER JOIN productdto as p
