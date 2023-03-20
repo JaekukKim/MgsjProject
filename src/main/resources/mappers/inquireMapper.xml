@@ -4,8 +4,8 @@
 
 <!-- 제품 문의 등록  -->
 <insert id = "inquireWrite" parameterType = "com.project.inquire.domain.InquireDTO">
-INSERT INTO askdto(pno, askTitle, askContent, askRegDate)
-VALUES (#{pno}, #{askTitle}, #{askContent}, NOW())
+INSERT INTO askdto(pno, userId, askTitle, askContent)
+VALUES (#{pno}, #{userId}, #{askTitle}, #{askContent})
 </insert>
 
 <!-- 제품 문의 조회 -->

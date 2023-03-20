@@ -54,6 +54,12 @@ DELETE FROM orderdto
 WHERE orderNum = #{orderNum}
 </delete>
 
+<!-- 회원 탈퇴를 위한 주문내역 삭제 -->
+<delete id = "removerMemberOrder" parameterType = "String">
+DELETE FROM orderdto
+WHERE userId = #{userId}
+</delete>
+
 <!-- 주문 목록 -->
 <select id = "orderList" parameterType = "HashMap" resultType = "com.project.order.domain.OrderDTO">
 

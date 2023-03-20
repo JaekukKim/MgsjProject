@@ -99,10 +99,8 @@ function removeMember() {
 		
 		if(userPwd.value == "" || userPwd.value.length < 4){
 			alert("비밀번호는 반드시 4자 이상 입력해주세요");
-			
 			return false;
 		}
-		
 		$.ajax({
 			url : "/member/removeMember",
 			type : "post",
@@ -111,19 +109,15 @@ function removeMember() {
 				"userPwd" : userPwd.value
 			},
 			dataType : "json",
-			
 			success : function(result){
-				
 				if(result == true){
-					
-					alert("회원 탈퇴가 완료되었습니다.");
-					
+	
+					alert("회원 탈퇴가 완료되었습니다.");	
 					location.href = "/member/memberLogout";
 					
 				} else {
 					
-					alert("비밀번호 불일치로 회원 탈퇴에 실패하였습니다.");
-					
+					alert("비밀번호 불일치로 회원 탈퇴에 실패하였습니다.");	
 					return false;
 				}
 				

@@ -28,7 +28,7 @@ body{
 }
 
 .col-2 h1 {
-	font-size: 50px;
+	font-size: 35px;
 	line-height: 60px;
 	margin: 25px 0;
 }
@@ -163,6 +163,14 @@ h4 {
 
 input:focus {
 	outline: none;
+}
+input[class="inquireContent"]{
+	width : 300px;
+	border : none;
+	background: #f9f9f9;
+}
+td[class="writeCommentForm"]>div{
+	padding : 7px;
 }
 
 .single-product .fa {
@@ -329,6 +337,10 @@ input:focus {
 	border: none;
 	resize: none;
 	width: 100%;
+}
+
+textarea:focus{
+	outline: none;
 }
 
 .comment_id, .comment_title, .comment_content {

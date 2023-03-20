@@ -106,11 +106,15 @@ public class MemberController {
 
 		} else {
 			session.setAttribute("memberInfo", memberInfo);
-
-			if (memberInfo.getUserVerify() == 128) {
+			
+			if (memberInfo.getUserVerify() == 5) {
+				logger.info("판매 인증 회원 로그인 : {}", session.getAttribute("memberInfo"));
+				
+			} else if(memberInfo.getUserVerify() == 128){
 				logger.info("관리자 로그인 : {}", session.getAttribute("memberInfo"));
+				
 			} else {
-				logger.info("일반유저 로그인 : {}", session.getAttribute("memberInfo"));
+				logger.info("일반 회원 로그인 : {}", session.getAttribute("memberInfo"));
 			}
 
 		}

@@ -22,9 +22,9 @@ public class RequestMappingsList {
 	@RequestMapping(value = "/admin/endPoints", method = RequestMethod.GET)
 	public String getEndPointsInView(Model model) {
 		
-		Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
+		Map<RequestMappingInfo, HandlerMethod> endPoint = requestMappingHandlerMapping.getHandlerMethods();
 	
-		model.addAttribute("map", map);
+		model.addAttribute("endPoint", endPoint);
 		
 		return "/admin/endPointsRequestMapping";
 	}

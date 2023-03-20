@@ -58,12 +58,10 @@
 
 	<!-- 회원 탈퇴 -->
 	<delete id="removeMember" parameterType="com.project.member.domain.MemberDTO">
-		
 		delete 
 			from memberdto
 		where userId = #{userId}
 			and userPwd = #{userPwd}
-			
 	</delete>
 	
 	<!-- 회원 탈퇴시 비밀번호 검증을 위한 비밀번호 찾기 -->

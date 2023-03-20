@@ -32,16 +32,16 @@ public class ReviewController {
 		return "/review/reviewWritePage";
 	}
 	// 리뷰 등록
+	@ResponseBody
 	@RequestMapping(value = "/review/reviewWrite", method = RequestMethod.POST)
-	public String reviewWrite(ReviewBoardDTO reviewBoardDTO, Model model) throws Exception {
+	public void reviewWrite(ReviewBoardDTO reviewBoardDTO) throws Exception {
 		
 		logger.info("리뷰 등록 reviewWrite - Controller");
 		
 		reviewService.reviewWrite(reviewBoardDTO);
 		
-		
-		return "redirect:/product/productView?pno=" + reviewBoardDTO.getPno();
 	}
+	
 	//리뷰 조회
 	@RequestMapping(value = "/review/reviewView", method = RequestMethod.GET)
 	public void reviewView(Model model, ReviewBoardDTO reviewBoardDTO, int rvno) throws Exception {

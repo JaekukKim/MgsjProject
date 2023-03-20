@@ -21,6 +21,8 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSession sqlSession;
 
 	private static final String NAME_SPACE = "mappers.memberMapper";
+	
+	private static final String NAME_SPACE_ORDER = "mappers.orderMapper";
 
 	private static final String NAME_SPACE_ADMIN = "mappers.adminMapper";
 
@@ -84,6 +86,8 @@ public class MemberDAOImpl implements MemberDAO {
 	public void removeMember(MemberDTO memberDTO) throws Exception {
 		
 		logger.info("회원탈퇴 시작");
+		
+		sqlSession.delete(NAME_SPACE_ORDER + ".removerMemberOrder", memberDTO.getUserId()); 
 		
 		sqlSession.selectOne(NAME_SPACE + ".removeMember", memberDTO);
 	}

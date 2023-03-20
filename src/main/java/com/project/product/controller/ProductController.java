@@ -106,7 +106,7 @@ public class ProductController {
 
 		productService.productWrite(productDTO);
 
-		return "redirect:/product/productList";
+		return "redirect:/category/categoryPro?cno=101";
 
 	}
 

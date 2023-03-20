@@ -10,3 +10,4 @@ function memberLogout() {
 		alert("로그아웃을 취소하셨습니다.");
 	}
 }
+

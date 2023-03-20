@@ -98,7 +98,13 @@
 	<!-- 관리자 상품 삭제 -->
 	<delete id="adminProductDelete" parameterType="Integer">
 		delete from productdto
-			where pno = #{pno}
+			where pno = #{pno};
+	</delete>
+	
+	<!-- 관리자 리뷰 삭제 -->
+	<delete id="adminProductReviewDelete" parameterType="Integer">
+		delete from reviewboarddto
+			where pno = #{pno};
 	</delete>
 	
 </mapper>

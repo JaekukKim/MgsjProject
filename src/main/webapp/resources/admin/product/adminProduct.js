@@ -62,7 +62,6 @@ function enterSearching() {
 }
 
 /* 삭제하기 구현 */
-
 function deleteProductList(pno) {
 	let deleteYN = confirm("제품을 삭제할까요?");
 

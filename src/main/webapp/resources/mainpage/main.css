@@ -4,8 +4,6 @@
   box-sizing: border-box;
 }
 
-
-
 body {
   font-family: sans-serif;
 }
@@ -17,13 +15,17 @@ body {
   padding-right: 25px;
 }
 
+div>img{
+	background-size: cover;
+}
+
 .row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-bottom: 40px;
 }
+
 
 .col-2 {
   flex-basis: 50%;
@@ -84,7 +86,7 @@ body {
 
 .title {
   text-align: center;
-  margin: 40px auto 40px 0px;
+  margin: 10px auto 40px auto;
   position: relative;
   line-height: 60px;
   color: #555;
@@ -130,9 +132,8 @@ h4 {
 }
 .small-container-ba {
   max-width: 100%;
-  height: 55vh;
+  height: 75vh;
   margin: auto;
-  margin-bottom: 150px;
 }
 
 .swiper-slide {
@@ -221,6 +222,22 @@ h4 {
 
 .product div {
    flex : 1;
+}
+
+.swiper-button-prev{
+	color: black;
+}
+
+.swiper-button-next{
+	color: black;
+}
+
+.swiper-pagination-bullet{
+	color : #4f4f4f;
+}
+
+.swiper-pagination-bullet swiper-pagination-bullet-active{
+	color : black;
 }
 
 

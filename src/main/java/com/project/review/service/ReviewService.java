@@ -6,7 +6,6 @@ import com.project.review.domain.ReviewBoardDTO;
 
 public interface ReviewService {
 
-	
 	//리뷰 등록
 	public void reviewWrite(ReviewBoardDTO reviewBoardDTO) throws Exception;
 	

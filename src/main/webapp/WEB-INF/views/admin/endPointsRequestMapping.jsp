@@ -15,11 +15,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${map}" var="obj">
+			<c:forEach items="${endPoint}" var="endPoint">
 				<tr>
-					<td>${obj}</td>
-					<td>${obj.key.patternsCondition}</td>
-					<td>${obj.value}</td>
+					<td>${endPoint}</td>
+					<td>${endPoint.key.patternsCondition}</td>
+					<td>${endPoint.value}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

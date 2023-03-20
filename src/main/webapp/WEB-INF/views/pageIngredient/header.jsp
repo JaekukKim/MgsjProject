@@ -45,11 +45,6 @@ Cookie[] ck = request.getCookies();
 									</a>
 								</li>
 								<li>
-									<a href="#" title="로그 기록 확인 페이지">
-										<i class="bi bi-clock-history" style="font-size: 30px;"></i>
-									</a>
-								</li>
-								<li>
 									<a href="javascript:memberLogout()" title="로그아웃">
 										<i class="bi bi-door-open" style="font-size: 30px;"></i>
 									</a>
@@ -73,26 +68,34 @@ Cookie[] ck = request.getCookies();
 									<a href="javascript:memberLogout()" title="로그아웃">
 										<i class="bi bi-door-open" style="font-size: 30px;"></i>
 									</a>
-									
+
 								</li>
 							</ul>
 						</c:when>
 						<c:when test="${(memberInfo.userVerify) == 5 && (memberInfo != null) }">
 							<%-- 판매자 --%>
-							<div class="gnb-utilmenu">
-								<a href="/member/memberModifyPage" title="판매자 정보 수정">
-									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
-								</a>
-								<a href="/cart/cartList" title="판매상품내역">
-									<i class="bi bi-cart" style="font-size: 30px;"></i>
-								</a>
-								<a href="#" title="활동 기록">
-									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
-								</a>
-								<a href="javascript:memberLogout()" title="로그아웃">
-									<i class="bi bi-door-open" style="font-size: 30px;"></i>
-								</a>
-							</div>
+							<ul id="MenuItems">
+								<li>
+									<a href="/member/memberModifyPage" title="판매자 정보 수정">
+										<i class="bi bi-person-fill" style="font-size: 30px;"></i>
+									</a>
+								</li>
+								<li>
+									<a href="/cart/cartList" title="판매상품내역">
+										<i class="bi bi-cart" style="font-size: 30px;"></i>
+									</a>
+								</li>
+								<li>
+									<a href="/product/productWritePage" title="판매상품내역">
+										<i class="bi bi-currency-dollar" style="font-size: 30px;"></i>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:memberLogout()" title="로그아웃">
+										<i class="bi bi-door-open" style="font-size: 30px;"></i>
+									</a>
+								</li>
+							</ul>
 						</c:when>
 						<c:otherwise>
 							<ul id="MenuItems">
@@ -112,123 +115,64 @@ Cookie[] ck = request.getCookies();
 		</div>
 	</div>
 	<!--dropdown menu 시작-->
-   <div class="menu">
-      <a href="/order/orderList">My Page</a>
-      <a href="/announcement/announcement?pageNum=1">NOTICE</a>
-      <div class="dropdown">
-         <button class="dropbtn">Product
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <div class="row">
-              <div class="column">
-                 <c:forEach var="categoryList1" items="${categoryList1}"> <!-- 대분류 -->
-                  <span>
-                     <a href="#" class="dropdown-btn">
-                        <c:out value="${categoryList1.categoryName}" /> <!-- 대분류 이름 -->
-                     </a>
-                  </span>
-                  <c:forEach var="categoryList2" items="${categoryList2}"><!-- 소분류 -->
-                     <c:if test="${categoryList2.categoryLevel == categoryList1.cno}">
-                        <a href="/category/categoryPro?cno=${categoryList2.cno}" class="dorpdown-btn">
-                           <c:out value="${categoryList2.categoryName}" /><!-- 소분류 이름 -->
-                        </a>
-                     </c:if>
-                  </c:forEach>
-               </c:forEach>
-              </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--dropdown menu 끝-->
-
-
-
-	<!------------js for toggle menu-------------->
-	<script>
-		let MenuItems = document.getElementById ("MenuItems");
-
-		MenuItems.style.maxHeight = "0px";
-
-		function menutoggle () {
-			if (MenuItems.style.maxHeight == "0px") {
-				MenuItems.style.maxHeight = "200px"
-			} else {
-				MenuItems.style.maxHeight = "0px";
-			}
-		}
-
-		/* 	//컨트롤러에서 데이터 받기
-			var jsonData = JSON.parse ( '${categoryList}' );
-			console.log ( jsonData );
-
-			var cate1Arr = new Array ();
-			var cate1Obj = new Object ();
-
-			//1차 분류 셀렉트 박스에 삽입할 데이터
-			for ( var i = 0; i < jsonData.length; i++ ) {
-
-				if ( jsonData[i].level == 1 ) {
-					cate1Obj = new Object (); //초기화
-					cate1Obj.cno = jsonData[i].cno;
-					cate1Obj.categoryName = jsonData[i].categoryName;
-					cate1Arr.push ( cate1Obj );
-				}
-			} */
-
-		/* //1차 분류 셀렉트 박스에 데이터
-		var cate1Select = $ ( '.category1' )
-		for ( var i = 0; i < cate1Arr.length; i++ ) {
-			/*	cate1Select.append("<option value='" + cate1Arr[i].cno + "'>"
-						+ cate1Arr[i].categoryName + "</option>"); 
-			cate1Select.append ( "<c:forEach items = '"cate1Arr[i]"'>" + cate1Arr.categoryName + "</c:forEach>" );
-		}
-
-		$ ( document ).on ( "change" , "category1" , function () {
-
-			var cate2Arr = new Array ();
-			var cate2Obj = new Object ();
-
-			//2차 분류 셀렉트 박스
-			for ( var i = 0; i < jsonData.length; i++ ) {
-
-				if ( jsonData[i].level == 2 ) {
-					cate2Obj = new Object ();
-					cate2Obj.cno = jsonData[i].cno;
-					cate2Obj.categoryName = jsonData[i].categoryName;
-					cate2Obj.categoryLevel = jsonData[i].categoryLevel;
-
-					cate2Arr.push ( cate2Obj );
-				}
-			}
-
-			var cate2Select = $ ( "select.category2" );
-			/* 
-			for(var i = 0; i < cate2Arr.length; i++) {
-				cate2Select.append("<option value = '" + cate2Arr[i].cno +"'>"
-									+ cate2Arr[i].categoryName + "</option>")
-			} 
-
-			cate2Select.children ().remove ();
-
-			$ ( "option:selected" , this ).each ( function () {
-
-				var selectVal = $ ( this ).val ();
-				cate2Select.append ( "<option value=''>전체</option>" );
-
-				for ( var i = 0; i < cate2Arr.length; i++ ) {
-					if ( selectVal == cate2Arr[i].categoryLevel ) {
-						cate2Select.append ( "<option value='" + cate2Arr[i].cno + "'>" + cate2Arr[i].categoryName + "</option>" );
-					}
-				}
-			} );
-
-		} ); */
-	</script>
-
+	<div class="menu">
+		<a href="/order/orderList">My Page</a>
+		<a href="/announcement/announcement?pageNum=1">NOTICE</a>
+		<div class="dropdown">
+			<button class="dropbtn">
+				Product <i class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-content">
+				<div class="row">
+					<c:forEach var="categoryList1" items="${categoryList1}">
+						<!-- 대분류 -->
+						<div class="column">
+							<div>
+								<c:out value="${categoryList1.categoryName}" />
+								<!-- 대분류 이름 -->
+							</div>
+							<hr>
+							<c:forEach var="categoryList2" items="${categoryList2}">
+								<!-- 소분류 -->
+								<c:if test="${categoryList2.categoryLevel == categoryList1.cno}">
+									<a href="/category/categoryPro?cno=${categoryList2.cno}" class="dorpdown-btn">
+										<c:out value="${categoryList2.categoryName}" />
+										<!-- 소분류 이름 -->
+									</a>
+								</c:if>
+							</c:forEach>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--dropdown menu 끝-->
 </body>
 
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/pageIngredient/header/history.js"></script>
+<script type="text/javascript">
+	//반응형 웹 햄버거 토글
+	let MenuItems = document.getElementById ( "MenuItems" );
+
+	MenuItems.style.maxHeight = "0px";
+
+	function menutoggle () {
+		
+		if ( MenuItems.style.maxHeight == "0px" ) {
+			
+			MenuItems.style.maxHeight = "200px"
+			
+			let liMediaQuery = document.querySelectorAll("ul>li");
+			
+			for ( let i = 0; i < liMediaQuery.length; i++ ) {
+				liMediaQuery[i].style.float = "left";
+			}
+			
+		} else {
+			MenuItems.style.maxHeight = "0px";
+		}
+	}
+</script>
 </html>

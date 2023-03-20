@@ -105,6 +105,8 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void adminProductDelete(int pno) throws Exception {
 		
+		logger.info("관리자 상품 삭제, 삭제된 상품 번호 : {}", pno);
+		
 		sqlSession.delete(NAME_SPACE_ADMIN + ".adminProductDelete", pno);
 	}
 }

@@ -5,12 +5,13 @@ import java.util.Date;
 public class InquireDTO {
 
 	private int askNum;
-	private int pno; // [3] -> [4] 여기서 써먹어야함.
+	private int pno;
+	private String userId;
 	private String askTitle;
 	private String askContent;
 	private Date askRegDate;
-	
-	//이너 조인
+
+	// 이너 조인
 	private String categoryName;
 
 	public int getAskNum() {
@@ -27,6 +28,14 @@ public class InquireDTO {
 
 	public void setPno(int pno) {
 		this.pno = pno;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getAskTitle() {
@@ -53,19 +62,18 @@ public class InquireDTO {
 		this.askRegDate = askRegDate;
 	}
 
-	public String getProductName() {
+	public String getCategoryName() {
 		return categoryName;
 	}
 
-	public void setProductName(String productName) {
-		this.categoryName = productName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	@Override
 	public String toString() {
-		return "InquireDTO [askNum=" + askNum + ", pno=" + pno + ", askTitle=" + askTitle + ", askContent=" + askContent
+		return "InquireDTO [askNum=" + askNum + ", pno=" + pno + ", userId=" + userId + ", askTitle=" + askTitle + ", askContent=" + askContent
 				+ ", askRegDate=" + askRegDate + ", categoryName=" + categoryName + "]";
 	}
 
-	
 }
