@@ -9,7 +9,7 @@ import com.project.order.domain.PaymentDTO;
 public interface PaymentService {
 
 	//결제 등록
-	public void paymentWrite(String userId, PaymentDTO paymentDTO, OrderDTO orderDTO, OrderDetailDTO orderDetailData) throws Exception;
+	public void paymentWrite(String userId, PaymentDTO paymentDTO, OrderDTO orderDTO, OrderDetailDTO orderDetailDTO) throws Exception;
 	
 	//결제 내역 목록
 	public List<PaymentDTO> paymentList(PaymentDTO paymentDTO) throws Exception;

@@ -3,7 +3,6 @@ package com.project.order.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,11 +31,12 @@ public class PaymentController {
 	@Autowired(required = false)
 	private OrderService orderService;
 	
+	
 	//결제 - 주문정보(주문품목테이블), 주문세부정보(주소)
 	@RequestMapping(value = "/payment/paymentWrite", method = RequestMethod.POST)
 	public String paymentWrite(PaymentDTO paymentDTO, 
 								OrderDTO orderDTO,
-								@ModelAttribute(value = "orderDetailDTO[]") List<OrderDetailDTO> orderDetailDTO,
+								OrderDetailDTO orderDetailDTO,
 								HttpServletRequest req, 
 								String userId) throws Exception {
 		
@@ -48,11 +47,10 @@ public class PaymentController {
 		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
 
 		paymentDTO.setUserId(memberLoginSession.getUserId());
-	
-		for (OrderDetailDTO orderDetailData : orderDetailDTO) {
-			paymentService.paymentWrite(userId, paymentDTO, orderDTO, orderDetailData);
-		}
 		
+		paymentService.paymentWrite(userId, paymentDTO, orderDTO, orderDetailDTO);
+		
+		System.out.println("값 넘어왔니?" + orderDetailDTO);
 		
 		return "redirect:/order/orderList";
 	}
