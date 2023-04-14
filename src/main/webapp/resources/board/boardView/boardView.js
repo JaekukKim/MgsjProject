@@ -69,7 +69,6 @@ function writeReply(bno) {
 			'writer': writer,
 			'content': content,
 			'replyPwd' : replyPwd
-			
 		},
 
 		success: function(data) {
@@ -123,12 +122,10 @@ function modifyReply(bno) {
 		url: "/reply/replyModify",
 		type: "POST",
 		data: {
-			
 			'bno': bno,
 			'rno': rno,
 			'content': content,
 			'replyPwd' : pwd
-			
 		},
 		dataType : 'json',
 

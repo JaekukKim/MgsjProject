@@ -15,7 +15,7 @@
 			<div class="member">
 				<!-- 로고 -->
 				<span class="main-logo">
-					<a href="/mainPage/mainPage">Ezen</a>
+					<a href="/mainPage/mainPage">MGSJ</a>
 				</span>
 				<!-- 필드 -->
 				<div class="field">

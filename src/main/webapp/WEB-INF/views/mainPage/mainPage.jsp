@@ -54,7 +54,7 @@
 		<div class="small-container">
 			<h2 class="title">먹고사는 즐거움</h2>
 			<div class="row">
-				<c:forEach var="mainPageProductList" items="${mainPageProductList }" begin="28" end="34" step="3">
+				<c:forEach var="mainPageProductList" items="${mainPageProductList }" begin="0" end="2">
 					<div class="col-4">
 						<a href="/product/productView?pno=${mainPageProductList.pno }">
 							<img src="${mainPageProductList.storedFileName}" alt="상품이미지로딩실패">
@@ -71,7 +71,7 @@
 			<h2 class="title">많이 구매한 제품</h2>
 			<div class="row">
 
-				<c:forEach var="mainPageProductList" items="${mainPageProductList }" begin="14" end="16">
+				<c:forEach var="mainPageProductList" items="${mainPageProductList }" begin="3" end="5">
 					<div class="col-4">
 						<a href="/product/productView?pno=${mainPageProductList.pno }">
 							<img src="${mainPageProductList.storedFileName }" alt="상품이미지로딩실패">

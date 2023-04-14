@@ -3,37 +3,35 @@ package com.project.board.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class PageIngredient {
-	// BoardController 부분의 페이징이 매우 복잡하다. 그냥 클래스로 하나 만들어서 관리하자.
 
 	private static final Logger logger = LoggerFactory.getLogger(PageIngredient.class);
-	
-	private int pageNum; 			// 현재 페이지 번호
-	private int totalContent; 		// 전체 게시글의 갯수
-	private int contentNum; 		// 출력할 게시글의 갯수
-	private int totalPageNum; 		// 전체 페이지의 수
-	private int selectContent; 		// 페이지당 출력할 게시글의 수
-	private int maxPageNum; 		// 한 화면에 출력되는 페이지의 갯수
-	private int startPage; 			// 한 화면에 출력되는 페이지 중 시작 페이지의 숫자
-	private int endPage; 			// 한 화면에 출력되는 페이지 중 끝 페이지의 숫자
-	private boolean prevPage; 		// 이전페이지 버튼
-	private boolean nextPage; 		// 다음페이지 버튼
-	
+
+	private int pageNum; // 현재 페이지 번호
+	private int totalContent; // 전체 게시글의 갯수
+	private int contentNum; // 출력할 게시글의 갯수
+	private int totalPageNum; // 전체 페이지의 수
+	private int startContentNum; // 페이지당 출력할 게시글의 수
+	private int maxPageNum; // 한 화면에 출력되는 페이지의 갯수
+	private int startPage; // 한 화면에 출력되는 페이지 중 시작 페이지의 숫자
+	private int endPage; // 한 화면에 출력되는 페이지 중 끝 페이지의 숫자
+	private boolean prevPage; // 이전페이지 버튼
+	private boolean nextPage; // 다음페이지 버튼
+
 	// 검색기능을 위한 검색어 관리. (검색타입 : select 태그, 검색어 : input-text 태그)
 	private String searchType;
 	private String keyword;
 	private String searchTypeAndKeyword;
-	
-	// 생성자를 이용하여 기본값을 설정해준다.
+
+	// 생성자 오버로딩시 기본생성자 필수.
 	public PageIngredient() {
-		
+
 	}
-	
-	public PageIngredient(int contentNum , int maxPageNum, int selectContent) {
+
+	// 생성자로 원하는 수만큼 데이터를 출력할 수 있게 만들어줌.
+	public PageIngredient(int contentNum, int maxPageNum) {
 		this.contentNum = contentNum;
 		this.maxPageNum = maxPageNum;
-		this.selectContent = selectContent;
 	}
 
 	// 페이징 getter, setter
@@ -72,12 +70,12 @@ public class PageIngredient {
 		this.totalPageNum = totalPageNum;
 	}
 
-	public int getSelectContent() {
-		return selectContent;
+	public int getStartContentNum() {
+		return startContentNum;
 	}
 
-	public void setSelectContent(int selectContent) {
-		this.selectContent = selectContent;
+	public void setStartContentNum(int startContentNum) {
+		this.startContentNum = startContentNum;
 	}
 
 	public int getMaxPageNum() {
@@ -119,7 +117,7 @@ public class PageIngredient {
 	public void setNextPage(boolean nextPage) {
 		this.nextPage = nextPage;
 	}
-	
+
 	// 검색타입, 검색어, 쿼리파라미터에 보낼 변수 getter, setter
 	public String getSearchType() {
 		return searchType;
@@ -136,7 +134,7 @@ public class PageIngredient {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
+
 	// 페이징을 본격적으로 구현하는 로직
 	private void calculatePage() {
 
@@ -144,7 +142,7 @@ public class PageIngredient {
 		totalPageNum = (int) Math.ceil((double) totalContent / contentNum);
 
 		// 출력할 게시물 갯수
-		selectContent = (pageNum - 1) * contentNum;
+		startContentNum = (pageNum - 1) * contentNum;
 
 		// 마지막 페이지
 		endPage = (int) (Math.ceil((double) pageNum / maxPageNum) * maxPageNum);
@@ -174,31 +172,33 @@ public class PageIngredient {
 		}
 
 	}
-	
+
 	public String getSearchTypeAndKeyword() {
 		return searchTypeAndKeyword;
 	}
-	
+
 	// 검색기능에 대한 결과 출력 (쿼리스트링의 파라미터로 보낼 값을 메소드로)
 	public void setSearchTypeAndKeyword(String searchType, String keyword) {
-		// 검색타입이나 검색어가 없다면 그냥 없음을 리턴시켜버리고 있다면 그 값을 쿼리스트링의 형태로 보내주자.
-		
+		/*
+		 * 검색타입이나 검색어가 없다면 공란을 리턴 
+		 * 있다면 그 값을 쿼리스트링으로 보냄
+		 */
 		if (searchType.equals("") || keyword.equals("")) {
 			searchTypeAndKeyword = "";
 			logger.info("검색타입과 검색어를 쿼리파라미터로 전달(-아무것도 입력하지 않음-)");
 		} else {
 			// &searchType=writer&keyword=33
-			searchTypeAndKeyword =  "&searchType=" + searchType + "&keyword=" + keyword;
+			searchTypeAndKeyword = "&searchType=" + searchType + "&keyword=" + keyword;
 			logger.info("검색타입과 검색어를 쿼리파라미터로 전달(-검색타입과 검색어가 들어옴-)");
 		}
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
-		return "PageIngredient [totalContent=" + totalContent + ", contentNum=" + contentNum + ", totalPageNum="
-				+ totalPageNum + ", selectContent=" + selectContent + ", maxPageNum=" + maxPageNum + ", startPage="
-				+ startPage + ", endPage=" + endPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + "]";
+		return "PageIngredient [totalContent=" + totalContent + ", contentNum=" + contentNum + ", totalPageNum=" + totalPageNum + ", startContentNum="
+				+ startContentNum + ", maxPageNum=" + maxPageNum + ", startPage=" + startPage + ", endPage=" + endPage + ", prevPage=" + prevPage
+				+ ", nextPage=" + nextPage + "]";
 	}
 
 }

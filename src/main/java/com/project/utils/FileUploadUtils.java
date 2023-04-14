@@ -12,8 +12,8 @@ import net.coobird.thumbnailator.Thumbnails;
 public class FileUploadUtils {
 	
 	// 썸네일 사이즈
-	static final int THUMB_WIDTH = 250;
-	static final int THUMB_HEIGHT = 250;
+	static final int THUMB_WIDTH = 150;
+	static final int THUMB_HEIGHT = 212;
 	
 	// 파일 업로드 메소드
 	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception {
@@ -62,7 +62,7 @@ public class FileUploadUtils {
 	// String... 매개변수명 => 매개변수에 1개 이상인데 몇개가 들어올 지 모르는 경우에 사용
 	private static void makeDir(String uploadPath, String... paths) {
 		
-		// 경로가 존재하면 그냥 리턴을 시켜버리자
+		// 경로가 존재하면 그냥 리턴
 		if (new File(paths[paths.length - 1]).exists()) {
 			return;
 		}

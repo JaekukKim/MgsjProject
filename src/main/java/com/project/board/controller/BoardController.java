@@ -39,10 +39,10 @@ public class BoardController {
 			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
 			PageIngredient page, Model model) throws Exception {
 
-		logger.info("페이징 + 검색기능 시작 (Controller)\n검색타입 : {}\n검색어 : {}", searchType, keyword);
+		logger.info("공지사항 페이징 + 검색기능 시작 (Controller)\n검색타입 : {}\n검색어 : {}", searchType, keyword);
 		
 		// 파라미터 순서 int contentNum , int maxPageNum, int selectContent
-		page = new PageIngredient(10,10,10);
+		page = new PageIngredient(10,10);
 		
 		page.setPageNum(pageNum);
 		page.setSearchType(searchType);
@@ -53,11 +53,17 @@ public class BoardController {
 		page.setTotalContent(boardService.totalSearchContent(searchType, keyword));
 
 		List<BoardDTO> adminBoardList = null;
-		adminBoardList = boardService.adminBoardList(page.getSelectContent(), page.getContentNum(), searchType, keyword);
+		adminBoardList = boardService.adminBoardList(
+				page.getStartContentNum(), 
+				page.getContentNum(), 
+				searchType, keyword);
+		
 		model.addAttribute("adminBoardList", adminBoardList);
 		model.addAttribute("page", page);
+		
+		logger.info("페이징 정보 : {}",page.toString());
 
-		// 현재 페이지가 몇페이지인지 쉽게 구분하기위한 구분자를 넘겨주자
+		// 현재 페이지가 몇페이지인지 쉽게 구분하기위한 페이지 구분자를 넘김.
 		model.addAttribute("selectedPageNum", pageNum);
 	}
 

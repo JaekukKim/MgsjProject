@@ -101,20 +101,15 @@ thead {
 }
 
 tr {
-	color: #555;
-}
-
-
-td, th {
-	border-bottom: 1px solid #dcdcdc;
-	/*
-		테이블 태그와 관련된 속성은 margin속성 적용이 불가능하다. 그래서 padding으로 밀어주어야 한다.
-		또한 밑줄 긋는걸 원할 경우 border로 따로 설정해 주어야 한다.
-	*/
+    color: #555;
 }
 
 th {
-	color: #fff;	
+    background: #4F4F4F;
+}
+
+th .reply-in {
+    background: #fff;
 }
 
 .modifyAndDelete{

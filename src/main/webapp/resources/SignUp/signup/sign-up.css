@@ -14,7 +14,7 @@ body{
     margin: 0;
 }
 
-.sign-up a{
+.sign-up a {
     text-decoration: none;
     color: #222;
 }
@@ -75,14 +75,16 @@ body{
 }
 
 .field>button {
-    background-color: #297eff;
-    color:#fff;
+    background-color: #2a2a2a;
+    color: #fff;
     border: 1px solid #dadada;
     width: 40%;
     margin-bottom: 5px;
-    padding : 5px 0;
-    border-radius : 5px;
+    padding: 5px 0;
+    border-radius: 5px;
 }
+
+
 
 .field>button:hover{
 	cursor: pointer;

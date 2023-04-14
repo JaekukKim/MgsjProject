@@ -59,7 +59,7 @@
 		<a href="/member/memberSignUp" class="join_link">회원가입</a>
 	</div>
 
-	<footer> &copy; Ezen project. 대충간지나는 말. </footer>
+	<footer> &copy; Ezen project.</footer>
 </body>
 <script src="/resources/login/script/memberlogin.js"></script>
 </html>

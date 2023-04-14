@@ -79,7 +79,8 @@ public class ProductController {
 	public String productWrite(ProductDTO productDTO, MultipartFile file) throws Exception {
 
 		logger.info("상품 게시글 등록하기 productWrite - Controller : {}", productDTO);
-
+		
+		// 이미지 업로드 경로를 년,월,일로 지정
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = FileUploadUtils.calcPath(imgUploadPath);
 		String fileName = null;
@@ -94,9 +95,10 @@ public class ProductController {
 
 		}
 
-		// DB에 저장될 파일 경로, 이 경로는 나중에 img태그를 이용하여 클라이언트한테 이미지를 보여줄 때 중요하게 사용이 된다.
+		// DB에 저장될 파일 경로, 이 경로는 img태그를 이용하여 클라이언트한테 이미지를 보여줄 때 사용.
 		String storedFileName = File.separator + "imgUpload" + ymdPath + File.separator + fileName;
-		String storedThumbNail = File.separator + "imgUpload" + ymdPath + File.separator + "thumbs" + File.separator + "thumbnail_" + fileName;
+		String storedThumbNail = 
+				File.separator + "imgUpload" + ymdPath + File.separator + "thumbs" + File.separator + "thumbnail_" + fileName;
 
 		productDTO.setOriginFileName(file.getOriginalFilename());
 		productDTO.setStoredFileName(storedFileName);
