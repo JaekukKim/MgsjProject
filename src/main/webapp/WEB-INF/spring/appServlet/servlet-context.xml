@@ -33,14 +33,14 @@
 	
 	<!-- 파일 업로드 -->
 	<!-- 파일 업로드 경로 -->
-	<beans:bean class="java.lang.String" id="uploadPath"> <!-- uploadPath라는 id, class=String은 생성자의 매개변수가 String이라는 의미 -->
-		<beans:constructor-arg value="D:\jsp\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp8\wtpwebapps\Mgsjproject\resources"></beans:constructor-arg>
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="C:\Users\jaeku\git\Mgsjproject\src\main\webapp\resources"></beans:constructor-arg>
 	</beans:bean>
 	
-	<!-- 일반 파일 업로드 경로 -->
-	<resources mapping="/imgUpload/**" location="/resources/imgUpload/"/> <!-- <=/imgUpload/~ 를 통해 들어오면 location으로 저장 -->
+	<!-- 파일 업로드 설정 -->
+	<resources mapping="/imgUpload/**" location="/resources/imgUpload/"/> <!-- /imgUpload/~ 를 통해 들어오면 location으로 저장 -->
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
-		<beans:property name="maxUploadSize" value="15485760"></beans:property>
+		<beans:property name="maxUploadSize" value="15485760"></beans:property> <!-- 업로드 최대 용량 설정 -->
 	</beans:bean>
 	<!-- 파일 업로드 끝 -->
 	
@@ -54,8 +54,8 @@
 	<beans:bean id="AdminVerifyInterceptor" class="com.project.interceptor.AdminVerifyInterceptor"></beans:bean>
 	
 	<!-- 로그인 확인 -->
-	<context:component-scan base-package="com.project.interceptor"></context:component-scan>
-	<beans:bean id="LoginInterceptor" class="com.project.interceptor.LoginInterceptor"></beans:bean>
+	<context:component-scan base-package="com.project.interceptor"/>
+	<beans:bean id="LoginInterceptor" class="com.project.interceptor.LoginInterceptor"/>
 	
 	<!-- 상품판매자 -->
 	<context:component-scan base-package="com.project.interceptor"></context:component-scan>

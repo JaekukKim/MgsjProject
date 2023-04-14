@@ -10,6 +10,7 @@ public class CartDTO {
 	private int totalCnt;
 	private String productName;
 	private int productPrice;
+	private String storedFileName;
 	
 	public int getCartNum() {
 		return cartNum;
@@ -67,9 +68,20 @@ public class CartDTO {
 		this.productPrice = productPrice;
 	}
 
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
+	}
+
 	@Override
 	public String toString() {
-		return "CartDTO [cartNum=" + cartNum + ", pno=" + pno + ", userId=" + userId + ", productCnt=" + productCnt + ", totalCnt=" + totalCnt
-				+ ", productName=" + productName + ", productPrice=" + productPrice + "]";
+		return "CartDTO [cartNum=" + cartNum + ", pno=" + pno + ", userId=" + userId + ", productCnt=" + productCnt
+				+ ", totalCnt=" + totalCnt + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", storedFileName=" + storedFileName + "]";
 	}
+
+	
 }

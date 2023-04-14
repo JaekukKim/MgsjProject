@@ -51,7 +51,6 @@ public class CartController {
 		if (memberLoginSession == null || !memberLoginSession.getUserId().equals(userId)) {
 			// 세션값이 없을때, 세션아이디값과 db에 있는 아이디값이 다를경우
 			
-
 			return false;
 			
 		} else {
@@ -104,7 +103,9 @@ public class CartController {
 	// 장바구니 안의 항목 삭제
 	@ResponseBody
 	@RequestMapping(value = "/cart/cartDelete", method = RequestMethod.POST)
-	public int cartDelete(@RequestParam(value="cartProductNum[]") List<String> cartProductNum, CartDTO cartDTO, HttpSession session) throws Exception {
+	public int cartDelete(
+			@RequestParam(value="cartProductNum[]") List<String> cartProductNum, 
+			CartDTO cartDTO, HttpSession session) throws Exception {
 
 		logger.info("장바구니 삭제 cartDelete - Controller");
 

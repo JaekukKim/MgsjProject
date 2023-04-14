@@ -33,14 +33,16 @@ public class AdminTotalController {
 	@RequestMapping(value = "/admin/memberManagement", method = RequestMethod.GET)
 	public void getMemberList(@RequestParam("pageNum") int pageNum,
 			@RequestParam(value = "searchType", required = false, defaultValue = "userId") String searchType,
-			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword, PageIngredient page, Model model) throws Exception {
+			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword, 
+			PageIngredient page, 
+			Model model) throws Exception {
 
 		logger.info("관리자 페이지 - 회원 목록 출력 getMemberList - controller");
 
 		logger.info("관리자 페이지 - 회원 목록 출력\n검색어 : {}\n검색타입: ", keyword, searchType);
 
 		// 파라미터 순서 int contentNum , int maxPageNum, int selectContent
-		page = new PageIngredient(10, 10, 10);
+		page = new PageIngredient(10, 10);
 
 		page.setPageNum(pageNum);
 		page.setSearchType(searchType);
@@ -51,7 +53,11 @@ public class AdminTotalController {
 		page.setTotalContent(memberService.totalSearchMember(searchType, keyword));
 
 		List<MemberDTO> memberList = null;
-		memberList = memberService.getMemberList(page.getSelectContent(), page.getContentNum(), searchType, keyword);
+		memberList = memberService.getMemberList(
+				page.getStartContentNum(), 
+				page.getContentNum(), 
+				searchType, keyword);
+		
 		model.addAttribute("memberList", memberList);
 		model.addAttribute("page", page);
 
@@ -71,7 +77,7 @@ public class AdminTotalController {
 		logger.info("관리자 페이지 - 상품 목록 출력\n검색어 : {}\n검색타입: ", keyword, searchType);
 
 		// 파라미터 순서 int contentNum , int maxPageNum, int selectContent
-		page = new PageIngredient(10, 10, 10);
+		page = new PageIngredient(5, 5);
 
 		page.setPageNum(pageNum);
 		page.setSearchType(searchType);
@@ -82,11 +88,11 @@ public class AdminTotalController {
 		page.setTotalContent(productService.totalSearchProduct(searchType, keyword));
 
 		List<ProductDTO> productList = null;
-		productList = productService.getProductList(page.getSelectContent(), page.getContentNum(), searchType, keyword);
+		productList = productService.getProductList(page.getStartContentNum(), page.getContentNum(), searchType, keyword);
 		model.addAttribute("productList", productList);
 		model.addAttribute("page", page);
 
-		// 현재 페이지가 몇페이지인지 쉽게 구분하기위한 구분자를 넘겨주자
+		// 현재 페이지가 몇페이지인지 쉽게 구분하기위한 구분자
 		model.addAttribute("selectedPageNum", pageNum);
 
 	}

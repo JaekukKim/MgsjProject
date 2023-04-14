@@ -150,17 +150,17 @@
 		<div align="center">
 			<table>
 				<thead>
-					<tr>
-						<th style="border-bottom: none;">
-							<div style="margin-right: 20px;" align="left">
-								<input id="writer" type="text" placeholder="닉네임을 입력하세요.">
-							</div>
-							<div style="margin-right: 20px;" align="left">
-								<input id="replyPwd" type="password" placeholder="비밀번호를 입력하세요.">
-							</div>
-						</th>
-					</tr>
-				</thead>
+                    <tr>
+                        <th style="border-bottom: none;">
+                            <div class="reply-in" align="left">
+                                <input id="writer" type="text" placeholder="닉네임을 입력하세요.">
+                            </div>
+                            <div class="reply-in" align="left">
+                                <input id="replyPwd" type="password" placeholder="비밀번호를 입력하세요.">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
 				<tbody>
 					<tr>
 						<td style="border-bottom: none;">

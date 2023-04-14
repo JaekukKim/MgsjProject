@@ -25,6 +25,7 @@
 		<br>
 		<a href="/product/productList">판매 상품 목록</a>
 	</div>
+	<%= request.getRealPath("/") %>
 </body>
 </html>
 

@@ -34,10 +34,7 @@ request.setCharacterEncoding("UTF-8");
 							<div class="itemcheck">
 								<ul class="checkbtn1">
 									<li>
-										<span class="checkall">
-											<input type="checkbox" id="allchk" name="allchk" />
-											<label>전체선택</label>
-										</span>
+										
 									</li>
 								</ul>
 							</div>
@@ -48,13 +45,6 @@ request.setCharacterEncoding("UTF-8");
 
 				<div class="cart">
 					<table>
-						<%-- 					<colgroup> --%>
-						<%-- 						<col style="width: 70px"> --%>
-						<%-- 						<col style="width: 140px"> --%>
-						<%-- 						<col style="width: 210px"> --%>
-						<%-- 						<col style="width: 140px"> --%>
-						<%-- 						<col style="width: 140px"> --%>
-						<%-- 					</colgroup> --%>
 						<thead>
 							<tr>
 								<th></th>
@@ -68,9 +58,9 @@ request.setCharacterEncoding("UTF-8");
 							<c:set var="total" value="0" />
 							<c:forEach var="cartList" items="${cartList}">
 								<tr>
-									<td class="itemview_chk"><input type="checkbox" id="chkbox" name="chkbox" class="test" data-pno="${cartList.pno}"></td>
-									<td class="itemview_thum"><a href="/product.html">
-											<img src="/resources/product/images/product_sample.png">
+									<td class="itemview_chk"></td>
+									<td class="itemview_thum"><a href="#">
+											<img src="${cartList.storedFileName }">
 										</a></td>
 									<td class="itemview_info">
 

@@ -45,7 +45,7 @@ request.setCharacterEncoding("UTF-8");
 
 					<td>
 						<div class="cart-info">
-							<img src="">
+							<img id="resultimg" src="${cartList.storedFileName}" alt="상품 이미지 로딩 실패">
 							<div>
 								<p>
 									<a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a>
@@ -56,8 +56,6 @@ request.setCharacterEncoding("UTF-8");
 								<small>원</small>
 								<!--가격-->
 								<br>
-								<a class="btn btn-sm btn-warning" href="javascript:deleteCartList('${cartList.cartNum}','${cartList.productName}')">삭제</a>
-								<!--개별 삭제 버튼-->
 							</div>
 						</div>
 					</td>
@@ -109,13 +107,10 @@ request.setCharacterEncoding("UTF-8");
 
 	allchk.addEventListener ( "click" , function () {
 		const chk = allchk.checked;
-
 		const productInfoTag = document.querySelectorAll ( ".cart-info-pachment" );
-
 		const pnoCheckBoxes = document.querySelectorAll ( ".pnoCheckBox" );
 
 		let totalPrice = document.getElementById ( "total-price" );
-
 		// 상품 가격 총 합계 저장 변수
 		let sum = 0;
 
@@ -124,28 +119,19 @@ request.setCharacterEncoding("UTF-8");
 		} );
 
 		if ( chk ) {
-
 			// for문으로 쿼리셀렉터로 가져온 값들을 저장하여 특정값을 빼냄 (각각 상품마다 갯수*가격의 값)
 			for ( let i = 0; i < productInfoTag.length; i++ ) {
+				
 				let productDetailInfoTag = productInfoTag[i].querySelectorAll ( "td" );
-
-				/* 
-					tbody - tr - td태그의 3번째에 product_price는 고정된 위치이다. 그래서 우리는 그전에 상품 갯수에 따라
-					product_price 위치가 바뀌는 대참사를 겪었다.
-					productInfoTag.length로 적어놓으면 상품 갯수에 따라 product_price의 위치가 변하는, 정확히 말해선 product_price는 3번째 고정인데
-					product_price 얘를 1번째 위치 에서 찾을라하고.. 2번째 위치 에서 찾을라하고... 해서 대참사가 발생한 것이다.
-				 */
-				let productTotalPrice = productDetailInfoTag[3].querySelector ( '.product_price' ).value;
+				let productEachPrice = productDetailInfoTag[3]; // 각각 상품 가격이 저장되어 있는 태그
+				let productTotalPrice = productEachPrice.querySelector ( '.product_price' ).value;
 
 				sum += Number ( productTotalPrice );
 			}
 
 		} else {
-
 			sum = 0;
-
 		}
-
 		totalPrice.value = sum;
 	} );
 
@@ -156,18 +142,14 @@ request.setCharacterEncoding("UTF-8");
 		// 상품에 있는 체크박스를 전부 선택
 		const pnoCheckBoxes = document.querySelectorAll('.pnoCheckBox');
 		
-		// 선택된 체크박스마다 forEach문 실행 => forEach로 페이지를 전체 반복한다고 생각하면 된다.
-		// pnoCheckBoxes가 클릭되면 forEach문이 실행된다는 얘기다. 이 부분은 매우매우매우매우 중요하다. 처음 안 개념일 뿐더러 자바에는 없는 개념.
 		pnoCheckBoxes.forEach(eachCheckBox => {
 			
-			// pnoCheckBoxes가 클릭되면서 forEach문이 실행될때마다 상품마다 클릭한 체크박스를(eachCheckBox) 매개변수로 받아 중괄호 내부 실행.
 		   	if (eachCheckBox.checked) {
 		   	  
-		   		// "클릭이 된!!" 박스에서 가장 가까운 클래스(tr태그)를 찾아 내부의 .product_price인 태그를 찾는다.
 			    const productPrice = eachCheckBox.closest('.cart-info-pachment').querySelector('.product_price');
-		   		// 그 값을 숫자로 변형하고
+		   		
 			    const price = parseInt(productPrice.value);
-		   		// sum에 대입.
+		   		
 			    sum += price;
 		      
 		    }
@@ -180,7 +162,7 @@ request.setCharacterEncoding("UTF-8");
 	}
 
 	/* --------------------------------------------------------------------------------------------------------- */
-	// 선택된 상품 삭제 - ajax로 db까지 연동
+	// 선택된 상품 삭제
 	const productDeleteButton = document.querySelector ( ".delete-btn" );
 
 	const mainProductCheckBoxes = document.querySelectorAll ( ".pnoCheckBox:checked" );
