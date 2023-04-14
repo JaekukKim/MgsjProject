@@ -37,7 +37,7 @@ form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 30px 1px 30px 0px;
+  margin: 200px 1px 30px 0px;
 }
 
 .title {
@@ -73,7 +73,7 @@ form {
   text-align: center;
   padding: 5px;
   color: #fff;
-  background: #3b86ff;
+  background: #2a2a2a;
 }
 
 .cart td {
@@ -179,7 +179,7 @@ table>tbody>tr[class="addressIng"]{
 .payment-btn button {
     width: 100%;
     height: 70px;
-    background: #297eff;
+    background: #2a2a2a;
     color: #fff;
     border: none;
     font-size: 20px;
@@ -472,7 +472,7 @@ right: 10px;
 
 .btn_address {
   margin-top: 10px;
-  background: #297eff;
+  background: #4f4f4f;
   color: #fff;
   width: 100%;
   height: 30px;

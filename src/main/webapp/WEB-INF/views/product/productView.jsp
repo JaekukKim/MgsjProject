@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="com.project.product.domain.ProductDTO"%>
 <!DOCTYPE html>
 <html>
@@ -29,11 +29,6 @@
 		<div class="row">
 
 			<div class="col-2">
-				<!-- 
-           private String originFileName;
-           private String storedFileName;
-           private String storedThumbNail;
-           -->
 				<img id="resultimg" src="${productDTO.storedFileName}" alt="상품 이미지 로딩 실패">
 			</div>
 
@@ -50,9 +45,7 @@
 					</h4>
 					<input type="number" class="numbox" min="1" max="${productDTO.productStock}" value="1" name="productCnt" />
 					<button type="submit" class="btn">
-						<a style="color: #fff; font-size: 16px;" onclick="alert('장바구니에 담겼습니다');">
-							장바구니
-							<a>
+						<a style="color: #fff; font-size: 16px;" onclick="alert('장바구니에 담겼습니다');"> 장바구니</a>
 					</button>
 					<a href="/order/orderList" class="btn">주문하기</a>
 					<h3>배송비 : 3000원</h3>
@@ -106,7 +99,7 @@
 				</table>
 
 				<br>
-				
+
 				<!-- 리뷰 등록 -->
 				<table class="comment">
 					<td width="70%" class="writeCommentForm">
