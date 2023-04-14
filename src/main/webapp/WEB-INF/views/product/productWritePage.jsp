@@ -46,7 +46,9 @@
 									<div class="show-image">
 										<img src="" />
 									</div>
-									<label for="productFile" class="upload">이곳을 클릭하여 이미지 업로드</label>
+									<label for="productFile" class="upload">
+										이곳을 클릭하여 이미지 업로드
+									</label>
 									<br>
 									<input type="file" id="productFile" name="file">
 								</div>
@@ -174,6 +176,7 @@
 			// this에 (id = "productFile") 파일이 있다면.
 
 			var reader = new FileReader;
+			// 이미지를 보여줌
 			reader.onload = function ( data ) {
 				$ ( ".show-image img" ).attr ( "src" , data.target.result ).width ( 300 ).height ( 300 );
 			}

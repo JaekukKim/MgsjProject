@@ -22,13 +22,26 @@
       PageIngredient pageIngredient = (PageIngredient) request.getAttribute("page");
       %>
       <div class="search-bar">
-         <select class="searchType" name="searchType" onchange="changeInputTag();">
-            <option value="title" <%=pageIngredient.getSearchType().equals("title") ? "selected" : ""%>>제목</option>
-            <option value="content" <%=pageIngredient.getSearchType().equals("content") ? "selected" : ""%>>내용</option>
-            <option value="title_and_content" <%=pageIngredient.getSearchType().equals("title_and_content") ? "selected" : ""%>>제목+내용</option>
-            <option value="writer" <%=pageIngredient.getSearchType().equals("writer") ? "selected" : ""%>>작성자</option>
+         <select class="searchType" name="searchType">
+            <option value="title" <%=pageIngredient.getSearchType().equals("title") ? "selected" : ""%>>
+            	제목
+            </option>
+            <option value="content" <%=pageIngredient.getSearchType().equals("content") ? "selected" : ""%>>
+            	내용
+            </option>
+            <option value="title_and_content" <%=pageIngredient.getSearchType().equals("title_and_content") ? "selected" : ""%>>
+            	제목+내용
+            </option>
+            <option value="writer" <%=pageIngredient.getSearchType().equals("writer") ? "selected" : ""%>>
+            	작성자
+            </option>
          </select>
-         <input type="text" id="keyword" class="keyword" name="keyword" value="<%=pageIngredient.getKeyword()%>" onkeyup="enterSearching();">
+         <input type="text" 
+         		id="keyword" 
+         		class="keyword" 
+         		name="keyword" 
+         		value="<%=pageIngredient.getKeyword()%>" 
+         		onkeyup="enterSearching();">
          <button id="searchingActivate" type="button" onclick="searchingActivate();">검색</button>
       </div>
       <!-- 게시글 검색기능 끝 -->
@@ -73,18 +86,22 @@
       if (pageIngredient.isPrevPage() == true) {
       %>
       <span>
-         <a href="/announcement/announcement?pageNum=<%=pageIngredient.getStartPage() - 1%><%=pageIngredient.getSearchTypeAndKeyword()%>">◀이전</a>
+         <a href="/announcement/announcement?pageNum=<%=pageIngredient.getStartPage() - 1%>
+         	<%=pageIngredient.getSearchTypeAndKeyword()%>">◀이전
+         </a>
       </span>
       <%
       }
-
-      /* 페이지 쫙(1,2,3,4...) 출력하기 */
+      /* 페이지 출력하기 */
       for (int i = pageIngredient.getStartPage(); i <= pageIngredient.getEndPage(); i++) {
 
       if (selectedPageNum != i) {
       %>
       <span>
-         <a id="notSelectedPage" href="/announcement/announcement?pageNum=<%=i%><%=pageIngredient.getSearchTypeAndKeyword()%>"><%=i%></a>
+         <a id="notSelectedPage" 
+         	href="/announcement/announcement?pageNum=<%=i%><%=pageIngredient.getSearchTypeAndKeyword()%>">
+         	<%=i%>
+         </a>
       </span>
       <%
       } else if (selectedPageNum == i) {
@@ -95,12 +112,13 @@
       <%
       }
       }
-
       /* 다음버튼 만들기 */
       if (pageIngredient.isNextPage() == true) {
       %>
       <span>
-         <a href="/announcement/announcement?pageNum=<%=pageIngredient.getEndPage() + 1%><%=pageIngredient.getSearchTypeAndKeyword()%>">다음▶</a>
+         <a href="/announcement/announcement?pageNum=<%=pageIngredient.getEndPage() + 1%>
+         	<%=pageIngredient.getSearchTypeAndKeyword()%>">다음▶
+         </a>
       </span>
       <%
       }

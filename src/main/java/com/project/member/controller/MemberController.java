@@ -31,10 +31,10 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@Autowired
 	private CategoryService categoryService;
 
@@ -44,18 +44,16 @@ public class MemberController {
 
 		logger.info("MGSJ 접속");
 
-		
-		  List<CategoryDTO> categoryList1 = categoryService.categoryDetailProduct1();
-		  
-		  List<CategoryDTO> categoryList2 = categoryService.categoryDetailProduct2();
-		  
-		  model.addAttribute("categoryList1", categoryList1);
-		  
-		  model.addAttribute("categoryList2", categoryList2);
-		 
-		
+		List<CategoryDTO> categoryList1 = categoryService.categoryDetailProduct1();
+
+		List<CategoryDTO> categoryList2 = categoryService.categoryDetailProduct2();
+
+		model.addAttribute("categoryList1", categoryList1);
+
+		model.addAttribute("categoryList2", categoryList2);
+
 		List<ProductDTO> productList = productService.productList();
-		
+
 		model.addAttribute("mainPageProductList", productList);
 
 	}
@@ -89,7 +87,10 @@ public class MemberController {
 
 	// 로그인 기능 구현
 	@RequestMapping(value = "/member/memberLogin", method = RequestMethod.POST)
-	public String memberLogin(MemberDTO memberDTO, HttpServletRequest req, RedirectAttributes reat) throws Exception {
+	public String memberLogin(
+			MemberDTO memberDTO, 
+			HttpServletRequest req, 
+			RedirectAttributes reat) throws Exception {
 
 		logger.info("로그인 진행 memberLoginPage - (controller)");
 
@@ -106,13 +107,13 @@ public class MemberController {
 
 		} else {
 			session.setAttribute("memberInfo", memberInfo);
-			
+
 			if (memberInfo.getUserVerify() == 5) {
 				logger.info("판매 인증 회원 로그인 : {}", session.getAttribute("memberInfo"));
-				
-			} else if(memberInfo.getUserVerify() == 128){
+
+			} else if (memberInfo.getUserVerify() == 128) {
 				logger.info("관리자 로그인 : {}", session.getAttribute("memberInfo"));
-				
+
 			} else {
 				logger.info("일반 회원 로그인 : {}", session.getAttribute("memberInfo"));
 			}
@@ -208,30 +209,30 @@ public class MemberController {
 		memberService.memberFindPwd(memberDTO);
 
 	}
-	
+
 	// 회원 탈퇴 로직
 	@ResponseBody
 	@RequestMapping(value = "/member/removeMember", method = RequestMethod.POST)
 	public boolean removeMember(MemberDTO memberDTO) throws Exception {
-		
+
 		String inputPwd = memberDTO.getUserPwd();
 		System.out.println("들어온 비밀번호 : " + inputPwd);
-		
+
 		String userPwd = memberService.getUserPwd(memberDTO.getUserId());
 		System.out.println("db 비밀번호 : " + userPwd);
-		
-		if(inputPwd.equals(userPwd)) {
-			
+
+		if (inputPwd.equals(userPwd)) {
+
 			logger.info("비밀번호 일치, 회원탈퇴 시작 : {}", memberDTO.getUserId());
-			
+
 			memberService.removeMember(memberDTO);
-			
+
 			return true;
-			
+
 		} else {
-			
+
 			logger.info("비밀번호 불일치, 회원탈퇴 실패");
-			
+
 			return false;
 		}
 	}

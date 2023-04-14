@@ -29,7 +29,6 @@ a {
 .category-left {
 	height: 170%;
 	width: 300px;
-	z-index: 1;
 	background-color: #fff;
 	overflow-x: hidden;
 	border-right: 1px solid #ccc;
