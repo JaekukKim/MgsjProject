@@ -164,9 +164,7 @@ request.setCharacterEncoding("UTF-8");
 	/* --------------------------------------------------------------------------------------------------------- */
 	// 선택된 상품 삭제
 	const productDeleteButton = document.querySelector ( ".delete-btn" );
-
 	const mainProductCheckBoxes = document.querySelectorAll ( ".pnoCheckBox:checked" );
-
 	const productNum = document.getElementById ( "chkbox" ).value;
 
 	// 선택 삭제 버튼을 눌렀을 때
